@@ -58,4 +58,12 @@ public class Helper {
             System.out.println("Hasta luego!");
         }
     }
+
+    public static void  posneg(){
+        int num1 = getTPInt();
+
+        if ((num1 >= 2 && num1 <= 10) || (num1 <= -2 && num1 >= -10)){
+            System.out.println("OK");
+        }
+    }
 }

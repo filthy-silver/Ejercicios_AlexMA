@@ -42,8 +42,10 @@ public class Main {
                 "\t[12] para asignacion\n" +
                 "\t[13] para relacionales\n" +
                 "\t[14] para logicos\n");
-        System.out.println("Práctica 3:\n" +
-                "\t[21] para votamatic3000\n");
+        System.out.println("  ► Práctica 3:\n" +
+                "\t[21] para votamatic3000\n" +
+                "  ► Práctica 4:\n" +
+                "\t[31] para multimatic99\n");
 
         Integer ejercicioN = null;
 
@@ -110,6 +112,10 @@ public class Main {
                 break;
             case 21:
                 Practica3.votamatic3000();
+                returnToMain();
+                break;
+            case 31:
+                Practica4.multimatic99();
                 returnToMain();
                 break;
 
