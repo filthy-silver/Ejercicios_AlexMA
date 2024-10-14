@@ -21,18 +21,23 @@ public class UNIDAD2Ejercicio2 {
 
         String aux = intAux.toString();
 
-        int n31 = Integer.parseInt(aux.substring(0, 1));
-        int n32 = Integer.parseInt(aux.substring(1, 2));
-        int n33 = Integer.parseInt(aux.substring(2, 3));
-        int n34 = Integer.parseInt(aux.substring(3, 4));
 
         if (n3 < 1900 || n3 > 2024){
             System.out.println("ERROR: Año fuera de rango.\n=====");
             main(args);
-        } if (n1 <= 0 || n2 <= 0){
-            System.out.println("ERROR: Día o mes fuera de rango.\n=====");
+        } if (n1 < 1 || n1 > 31){
+            System.out.println("ERROR: Día fuera de rango.\n=====");
             main(args);
         }
+        if (n2 < 1 || n2 > 12){
+            System.out.println("ERROR: Mes fuera de rango.\n=====");
+            main(args);
+        }
+
+        int n31 = Integer.parseInt(aux.substring(0, 1));
+        int n32 = Integer.parseInt(aux.substring(1, 2));
+        int n33 = Integer.parseInt(aux.substring(2, 3));
+        int n34 = Integer.parseInt(aux.substring(3, 4));
 
         System.out.println(n1 + "+" + n2 + "+" + n3 + " = " + (n1+n2+n3) +
                 "\n" + n31 + "+" + n32 + "+" + n33 + "+" + n34 + " = " + (n31+n32+n33+n34) +
@@ -52,11 +57,9 @@ public class UNIDAD2Ejercicio2 {
         boolean check = false;
         int error = 0;
         do {
-            if (!check) {
-                if(charCheck(fecha.charAt(0)) != 0) {
-                    error = 1;
-                    check = true;
-                }
+            if (charCheck(fecha.charAt(0)) != 0) {
+                error = 1;
+                check = true;
             }
             if (!check) {
                 if(charCheck(fecha.charAt(1)) != 0) {
@@ -118,9 +121,11 @@ public class UNIDAD2Ejercicio2 {
 
         if (error == 1) {
             System.out.println("ERROR: Valor numérico incorrecto. [dC" + error + " ]\n=====");
+            check = false;
         }
         if (error == 2) {
             System.out.println("ERROR: Separador de fecha incorrecto. [dC" + error + "]\n=====");
+            check = false;
         }
         if (error == 0) {
             System.out.println("VALIDO: Formato de fecha correcto. [dC" + error + "]\n=====");
@@ -137,18 +142,18 @@ public class UNIDAD2Ejercicio2 {
     //  [indice][2] = Separador válido
     int value = -1;
 
-        System.out.println("DEBUG → Char: " + text);
+//        System.out.println("DEBUG → Char: " + text);
 
     if (Character.isDigit(text)){
 
         value = 0;
-        System.out.println("DEBUG → Número: " + value);
+//        System.out.println("DEBUG → Número: " + value);
     } else if (Character.isLetter(text)){
         value = 1;
-        System.out.println("DEBUG → Letra: " + value);
+//        System.out.println("DEBUG → Letra: " + value);
     } else if (text == '/' || text == '-' || text == '.' || text == ' '){
         value = 2;
-        System.out.println("DEBUG → Separador: " + value);
+//        System.out.println("DEBUG → Separador: " + value);
     }
 
     return value;
