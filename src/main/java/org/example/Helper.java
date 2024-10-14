@@ -1,10 +1,30 @@
 package org.example;
 
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class Helper {
     static Scanner scn = new Scanner(System.in).useLocale(Locale.US);
+
+    public static void selecUnidad(int arg) {
+        switch (arg) {
+            case 1:
+                Main.tit();
+                Main.unit1();
+                returnToMain();
+            break;
+            case 2:
+                Main.tit();
+                Main.unit2();
+                returnToMain();
+            break;
+            default:
+                System.out.println("UNIDAD no encontrada.");
+                returnToMain();
+                break;
+        }
+    }
 
     public static int getTPInt() {
         int result = 0;
@@ -65,5 +85,33 @@ public class Helper {
         if ((num1 >= 2 && num1 <= 10) || (num1 <= -2 && num1 >= -10)){
             System.out.println("OK");
         }
+    }
+
+    public static int ejerNum(){
+        Integer ejerNum = null;
+
+        try {
+            ejerNum = getTPInt();
+        }
+        catch (NumberFormatException | InputMismatchException e) {
+
+            System.out.println("Introduce un número válido.\n");
+            scn.nextLine();
+        }
+        return ejerNum;
+    }
+
+    public static int countWords(String text, String word) {
+        int count = 0;
+        for (int i = 0; i < text.length(); i++) {
+            {
+                for (int j = 0; j <= word.length() && (text.charAt(i) == word.charAt(j)); j++) {
+                    if (j == word.length()-1) {
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
     }
 }

@@ -5,64 +5,70 @@ import java.util.Scanner;
 import java.io.Console;
 import static org.example.Helper.*;
 
-
-
 public class Main {
     static Scanner scn = new Scanner(System.in).useLocale(Locale.US);
-    static Console c = System.console();
 
     public static void main(String[] args) {
+        tit();
 
+        System.out.println("""
+                Introduce la UNIDAD a la que acceder:
+                 ► UNIDAD 1 → [1]
+                   \s
+                 ► UNIDAD 2 → [2]
+                \s""");
+
+        selecUnidad(getTPInt());
+
+
+    }
+
+    public static void tit() {
+        System.out.println("""
+                ▓█████ ▄▄▄██▀▀▀▓█████  ██▀███   ▄████▄   ██▓ ▄████▄   ██▓ ▒█████    ██████\s
+                ▓█   ▀   ▒██   ▓█   ▀ ▓██ ▒ ██▒▒██▀ ▀█  ▓██▒▒██▀ ▀█  ▓██▒▒██▒  ██▒▒██    ▒\s
+                ▒███     ░██   ▒███   ▓██ ░▄█ ▒▒▓█    ▄ ▒██▒▒▓█    ▄ ▒██▒▒██░  ██▒░ ▓██▄  \s
+                ▒▓█  ▄▓██▄██▓  ▒▓█  ▄ ▒██▀▀█▄  ▒▓▓▄ ▄██▒░██░▒▓▓▄ ▄██▒░██░▒██   ██░  ▒   ██▒
+                ░▒████▒▓███▒   ░▒████▒░██▓ ▒██▒▒ ▓███▀ ░░██░▒ ▓███▀ ░░██░░ ████▓▒░▒██████▒▒
+                ░░ ▒░ ░▒▓▒▒░   ░░ ▒░ ░░ ▒▓ ░▒▓░░ ░▒ ▒  ░░▓  ░ ░▒ ▒  ░░▓  ░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░
+                 ░ ░  ░▒ ░▒░    ░ ░  ░  ░▒ ░ ▒░  ░  ▒    ▒ ░  ░  ▒    ▒ ░  ░ ▒ ▒░ ░ ░▒  ░ ░
+                   ░   ░ ░ ░      ░     ░░   ░ ░         ▒ ░░         ▒ ░░ ░ ░ ▒  ░  ░  ░ \s
+                   ░  ░░   ░      ░  ░   ░     ░ ░       ░  ░ ░       ░      ░ ░        ░ \s
+                                               ░            ░                             \s
+                
+                """);
+    }
+
+    public static void unit1(){
+        System.out.println("""
+                Ejercicios de la UNIDAD 1:
+                Introduce el número del ejercicio que quieres ejecutar:
+                \t[0] para ejercicioInicial
+                  ► Batería de programas sencillos en Java
+                \t[1] para Ejercicio 1
+                \t[2] para Ejercicio 2
+                \t[3] para Ejercicio 3
+                \t[4] para Ejercicio 4
+                \t[5] para Ejercicio 5
+                \t[6] para Ejercicio 6
+                  ► Operadores:
+                \t[11] para aritmeticos
+                \t[12] para asignacion
+                \t[13] para relacionales
+                \t[14] para logicos
+                  ► Práctica 3:
+                \t[21] para votamatic3000
+                  ► Práctica 4:
+                \t[31] para multimatic99
+                ==========
+                
+                [123] Seleccionar UNIDAD
+                """);
         Ejercicio_UD1 ejercicioInicial = new Ejercicio_UD1();
-        Ejercicio_UD1 ejercicio1 = new Ejercicio_UD1();
-        System.out.println("▓█████ ▄▄▄██▀▀▀▓█████  ██▀███   ▄████▄   ██▓ ▄████▄   ██▓ ▒█████    ██████ \n" +
-                "▓█   ▀   ▒██   ▓█   ▀ ▓██ ▒ ██▒▒██▀ ▀█  ▓██▒▒██▀ ▀█  ▓██▒▒██▒  ██▒▒██    ▒ \n" +
-                "▒███     ░██   ▒███   ▓██ ░▄█ ▒▒▓█    ▄ ▒██▒▒▓█    ▄ ▒██▒▒██░  ██▒░ ▓██▄   \n" +
-                "▒▓█  ▄▓██▄██▓  ▒▓█  ▄ ▒██▀▀█▄  ▒▓▓▄ ▄██▒░██░▒▓▓▄ ▄██▒░██░▒██   ██░  ▒   ██▒\n" +
-                "░▒████▒▓███▒   ░▒████▒░██▓ ▒██▒▒ ▓███▀ ░░██░▒ ▓███▀ ░░██░░ ████▓▒░▒██████▒▒\n" +
-                "░░ ▒░ ░▒▓▒▒░   ░░ ▒░ ░░ ▒▓ ░▒▓░░ ░▒ ▒  ░░▓  ░ ░▒ ▒  ░░▓  ░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░\n" +
-                " ░ ░  ░▒ ░▒░    ░ ░  ░  ░▒ ░ ▒░  ░  ▒    ▒ ░  ░  ▒    ▒ ░  ░ ▒ ▒░ ░ ░▒  ░ ░\n" +
-                "   ░   ░ ░ ░      ░     ░░   ░ ░         ▒ ░░         ▒ ░░ ░ ░ ▒  ░  ░  ░  \n" +
-                "   ░  ░░   ░      ░  ░   ░     ░ ░       ░  ░ ░       ░      ░ ░        ░  \n" +
-                "                               ░            ░                              \n" +
-                "\n");
 
-        System.out.println("Ejercicios de la Unidad 1:\n");
-        System.out.println("Introduce el número del ejercicio que quieres ejecutar: ");
-        System.out.println("\t[0] para ejercicioInicial");
-        System.out.println("  ► Batería de programas sencillos en Java");
-        System.out.println("\t[1] para Ejercicio 1");
-        System.out.println("\t[2] para Ejercicio 2");
-        System.out.println("\t[3] para Ejercicio 3");
-        System.out.println("\t[4] para Ejercicio 4");
-        System.out.println("\t[5] para Ejercicio 5");
-        System.out.println("\t[6] para Ejercicio 6");
-        System.out.println("  ► Operadores:\n" +
-                "\t[11] para aritmeticos\n" +
-                "\t[12] para asignacion\n" +
-                "\t[13] para relacionales\n" +
-                "\t[14] para logicos\n");
-        System.out.println("  ► Práctica 3:\n" +
-                "\t[21] para votamatic3000\n" +
-                "  ► Práctica 4:\n" +
-                "\t[31] para multimatic99\n");
-
-        Integer ejercicioN = null;
-
-        try {
-             ;
-            ejercicioN = getTPInt();
-        }
-        catch (NumberFormatException | InputMismatchException e) {
-
-            System.out.println("Introduce un número válido.\n");
-            scn.nextLine();
-        }
-
-
-        switch (ejercicioN) {
+        switch (ejerNum()) {
             case 0:
-                ejercicio1.ejercicioInicial();
+                ejercicioInicial.ejercicioInicial();
                 returnToMain();
                 break;
             case 1:
@@ -124,6 +130,53 @@ public class Main {
                 System.out.flush();
                 returnToMain();
                 break;
+        }
+    }
+
+    public static void unit2(){
+        System.out.println("""
+                Ejercicios de la UNIDAD 1:
+                Introduce el número del ejercicio que quieres ejecutar:
+                  ► Batería de ejercicios con cadenas de caracteres
+                \t[1] para Ejercicio 1
+                \t[2] para Ejercicio 2
+                \t[3] para Ejercicio 3
+                \t[4] para Ejercicio 4
+                \t[5] para Ejercicio 5
+                
+                ==========
+                
+                [123] Seleccionar UNIDAD
+                """);
+
+        switch (ejerNum()) {
+            case 1:
+                UNIDAD2Bateria.Ejercicio1();
+                break;
+            case 2:
+                UNIDAD2Bateria.Ejercicio2();
+                break;
+            case 3:
+                UNIDAD2Bateria.Ejercicio3();
+                break;
+            case 4:
+                UNIDAD2Bateria.Ejercicio4();
+                break;
+            case 5:
+                UNIDAD2Bateria.Ejercicio5();
+                break;
+            case 41:
+                UNIDAD2Bateria.Ejercicio4v2();
+            case 11:
+                UNIDAD2.Ejercicio1();
+            case 123:
+                returnToMain();
+                break;
+
+            default:
+                System.out.println("Ejercicio no encontrado");
+                System.out.flush();
+                returnToMain();
         }
     }
 }
