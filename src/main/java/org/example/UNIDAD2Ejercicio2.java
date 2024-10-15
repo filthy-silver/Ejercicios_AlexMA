@@ -10,30 +10,38 @@ public class UNIDAD2Ejercicio2 {
         String fecha;
         boolean valid = false;
 
+        int n1 = 0;
+        int n2 = 0;
+        int n3 = 0;
+
         do {fecha = nacimiento();
-            valid = dataCheck(fecha);
+            boolean check = false;
+
+            check = dataCheck(fecha);
+
+            if (check){
+                n1 = Integer.parseInt(fecha.substring(0, 2));
+                n2 = Integer.parseInt(fecha.substring(3, 5));
+                n3 = Integer.parseInt(fecha.substring(6, 10));
+
+                if (n1 < 1 || n1 > 31){
+                    System.out.println("ERROR: Día fuera de rango.\n=====");
+                } else if (n2 < 1 || n2 > 12){
+                    System.out.println("ERROR: Mes fuera de rango.\n=====");
+                } else if (n3 < 1900 || n3 > 2024){
+                    System.out.println("ERROR: Año fuera de rango.\n=====");
+                } else {
+                    valid = true;
+                }
+            }
+
         } while (!valid);
 
-        int n1 = Integer.parseInt(fecha.substring(0, 2));
-        int n2 = Integer.parseInt(fecha.substring(3, 5));
-        int n3 = Integer.parseInt(fecha.substring(6, 10));
+
 
         Integer intAux = n1+n2+n3;
 
         String aux = intAux.toString();
-
-
-        if (n3 < 1900 || n3 > 2024){
-            System.out.println("ERROR: Año fuera de rango.\n=====");
-            main(args);
-        } if (n1 < 1 || n1 > 31){
-            System.out.println("ERROR: Día fuera de rango.\n=====");
-            main(args);
-        }
-        if (n2 < 1 || n2 > 12){
-            System.out.println("ERROR: Mes fuera de rango.\n=====");
-            main(args);
-        }
 
         int n31 = Integer.parseInt(aux.substring(0, 1));
         int n32 = Integer.parseInt(aux.substring(1, 2));
