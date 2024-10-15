@@ -41,6 +41,7 @@ public class UNIDAD2Practica2 {
                 valido = true;
             } else {
                 System.out.println("Introduce un número válido.");
+                scn.next();
                 scn.nextLine();
             }
 
