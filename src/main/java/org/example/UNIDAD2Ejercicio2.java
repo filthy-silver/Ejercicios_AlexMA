@@ -6,6 +6,7 @@ public class UNIDAD2Ejercicio2 {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+
         String fecha;
         boolean valid = false;
 
@@ -127,9 +128,9 @@ public class UNIDAD2Ejercicio2 {
             System.out.println("ERROR: Separador de fecha incorrecto. [dC" + error + "]\n=====");
             check = false;
         }
-        if (error == 0) {
-            System.out.println("VALIDO: Formato de fecha correcto. [dC" + error + "]\n=====");
-        }
+//        if (error == 0) {
+//            System.out.println("VALIDO: Formato de fecha correcto. [dC" + error + "]\n=====");
+//        }
 
         return check;
     }
