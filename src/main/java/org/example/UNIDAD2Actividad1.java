@@ -34,7 +34,6 @@ public class UNIDAD2Actividad1 {
         }
         while (metodo != 1 && metodo != 2);
 
-
         switch (metodo) {
             case 1 -> Generacion(Nacimiento());
             case 2 -> Generacion(Edad());
