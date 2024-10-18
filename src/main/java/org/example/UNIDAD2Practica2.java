@@ -66,7 +66,7 @@ public class UNIDAD2Practica2 {
                 if (num2 == 0) {
                     System.out.println("No se puede dividir entre 0.");
                 } else {
-                    System.out.println("El resultado de la división es: " + (num1 / num2));
+                    System.out.println("El resultado de la división es: " + ((float)num1 / (float)num2));
                 }
                     }
             case "r" -> {
