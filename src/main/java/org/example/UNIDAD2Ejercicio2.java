@@ -57,9 +57,21 @@ public class UNIDAD2Ejercicio2 {
         String fecha = sc.nextLine();
         if (fecha.length() != 10){
             System.out.println("ERROR: Formato de fecha incorrecto. [0]\n=====");
+            sc.nextLine();
             nacimiento();
         }
         return fecha;
+
+
+//        String fecha;
+//        do{
+//            System.out.println("Introduce tu fecha de nacimiento (dd/aa/aaaa):");
+//            fecha = sc.nextLine();
+//            if (fecha.length() != 10) {
+//            System.out.println("ERROR: Formato de fecha incorrecto. [0]\n=====");
+//            }
+//        } while (fecha.length() != 10);
+//        return fecha;
     }
 
     public static boolean dataCheck(String fecha) {
@@ -151,18 +163,18 @@ public class UNIDAD2Ejercicio2 {
     //  [indice][2] = Separador válido
     int value = -1;
 
-//        System.out.println("DEBUG → Char: " + text);
+        System.out.println("DEBUG → Char: " + text);
 
     if (Character.isDigit(text)){
 
         value = 0;
-//        System.out.println("DEBUG → Número: " + value);
+        System.out.println("DEBUG → Número: " + value);
     } else if (Character.isLetter(text)){
         value = 1;
-//        System.out.println("DEBUG → Letra: " + value);
+        System.out.println("DEBUG → Letra: " + value);
     } else if (text == '/' || text == '-' || text == '.' || text == ' '){
         value = 2;
-//        System.out.println("DEBUG → Separador: " + value);
+        System.out.println("DEBUG → Separador: " + value);
     }
 
     return value;
