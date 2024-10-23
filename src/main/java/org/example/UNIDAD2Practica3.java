@@ -11,20 +11,64 @@ public class UNIDAD2Practica3 {
 
     public static String ISBNcheck() {
         String isbn;
+        boolean check = true;
         do {
             System.out.println("Introduce el ISBN: ");
             isbn = scn.nextLine();
 
             if (isbn.length() != 10) {
                 System.out.println("El ISBN debe tener 10 dígitos.");
-                ISBNcheck();
+
             } else if (ISBNmissCheck(isbn) > 1) {
                 System.out.println("Solo puede faltar un número.");
-                ISBNcheck();
-            }
+
+            } else
+                check = false;
         }
-        while (isbn.length() != 10);
+        while (check);
+
         return isbn;
+    }
+
+    public static void ISBNcheck(String arg) {
+        arg = arg.toUpperCase();
+        int ISBNtotal = 0;
+        int missing = 0;
+        int count = 10;
+
+            for (int i = 0; i < arg.length(); i++) {
+
+                if (arg.charAt(i) == '?') {
+                    missing = count;
+                } else if (arg.charAt(i) == 'X' && i == arg.length()-1) {
+                    ISBNtotal += 10;
+                } else {
+                    try {
+                        ISBNtotal += Integer.parseInt(String.valueOf(arg.charAt(i))) * count;
+
+                    }
+                    catch (NumberFormatException e) {
+                        System.out.println("Hay caracteres no válidos.");
+                        break;
+                    }
+                }
+                count--;
+            }
+            if (ISBNtotal == 0){
+                System.out.println("El ISBN no es correcto.");
+                retry();
+            } else if (missing != 0) {
+                System.out.println("El número que falta es: " + missingNumber(missing, ISBNtotal));
+                retry();
+            } else {
+                if (ISBNtotal % 11 == 0) {
+                    System.out.println("El ISBN es correcto.");
+                    retry();
+                } else {
+                    System.out.println("El ISBN no es correcto.");
+                    retry();
+                }
+            }
     }
 
     public static int ISBNmissCheck(String arg) {
@@ -37,58 +81,11 @@ public class UNIDAD2Practica3 {
         return check;
     }
 
-    public static void ISBNcheck(String arg) {
-        int ISBNtotal = 0;
-        int missing = 0;
-        int count = 10;
-        boolean check = false;
-
-
-        try {
-            for (int i = 0; i < arg.length(); i++) {
-
-                System.out.println("DEBUG: count = " + count);
-
-                if (arg.charAt(i) == 'X' && arg.charAt(i) == arg.length()) {
-                    ISBNtotal += 10;
-                } else {
-                    System.out.println("DEBUG: La X no es última posición");
-                }
-                if (arg.charAt(i) == '?') {
-                    missing = count;
-                    System.out.println("DEBUG: missing = " + missing);
-                } else {
-                    System.out.println("DEBUG: arg.charAt(i): " + arg.charAt(i));
-                    ISBNtotal += Integer.parseInt(String.valueOf(arg.charAt(i))) * count;
-                    System.out.println("DEBUG: ISBNtotal: " + ISBNtotal);
-                }
-                count--;
-            }
-
-            if (missing != 0) {
-                System.out.println("El número que falta es: " + missingNumber(missing, ISBNtotal));
-
-            } else {
-                if (ISBNtotal % 11 == 0) {
-                    System.out.println("El ISBN es correcto.");
-                } else {
-                    System.out.println("El ISBN no es correcto.");
-                }
-                retry();
-            }
-
-        } catch (NumberFormatException e) {
-            System.out.println("El ISBN es inválido.");
-            retry();
-        }
-
-    }
-
-    public static int missingNumber(int num, int isbnActual) {
+    public static int missingNumber(int pos, int ISBNSumatorio) {
         int missing = 0;
 
         for (int i = 0; i < 10; i++) {
-            if ((isbnActual + (i * num)) % 11 == 0) {
+            if ((ISBNSumatorio + (i * pos)) % 11 == 0) {
                 missing = i;
             }
         }
