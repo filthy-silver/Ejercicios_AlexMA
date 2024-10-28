@@ -81,12 +81,12 @@ public class UNIDAD2Practica3 {
         return check;
     }
 
-    public static int missingNumber(int pos, int ISBNSumatorio) {
-        int missing = 0;
+    public static String missingNumber(int pos, int ISBNSumatorio) {
+        String missing = "X";
 
         for (int i = 0; i < 10; i++) {
             if ((ISBNSumatorio + (i * pos)) % 11 == 0) {
-                missing = i;
+                missing = i + "";
             }
         }
         return missing;
