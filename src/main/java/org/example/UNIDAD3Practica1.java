@@ -165,7 +165,7 @@ public class UNIDAD3Practica1 {
             try {
                 Integer.parseInt(s);
             } catch (NumberFormatException e) {
-                System.out.println(">Error: valor no numérico [c1]" +
+                System.out.println("> Error: valor no numérico [c1]" +
                         "\n> Introduce 7 valores numéricos separados por un espacio");
                 return false;   //Si no es numérico, devolvemos false
             }
@@ -173,9 +173,14 @@ public class UNIDAD3Practica1 {
         int aux = 0;    //Comprobamos que la suma de los valores sea 30
         for (String s : arg) {
             aux += Integer.parseInt(s);
+            if (Integer.parseInt(s) < 1 || Integer.parseInt(s) > 24) {
+                System.out.println("> Error: valor fuera de rango [c3]" +
+                        "\n> Los valores deben estar entre 1 y 24");
+                return false;   //Si no está entre 1 y 24, devolvemos false
+            }
         }
         if (aux != 30) {
-            System.out.println(">Error: suma de potencias incorrecta [c2]" +
+            System.out.println("> Error: suma de potencias incorrecta [c2]" +
                     "\n> La suma de las potencias de los samurais debe ser 30");
             return false;   //Si no es 30, devolvemos false
         } else {
