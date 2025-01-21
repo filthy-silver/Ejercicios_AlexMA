@@ -1,10 +1,10 @@
-package org.example;
+package org.unidad3;
 
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class UNIDAD3Actividad1
+public class Actividad2
 {
     static Scanner scn = new Scanner(System.in);
     static Random rng = new Random();
@@ -16,14 +16,15 @@ public class UNIDAD3Actividad1
 
     public static void main(String[] args)
     {
+        System.out.println(Arrays.toString(NUMS));
         int player = -1;
         String color, evenOdd;
         boolean check;
 
         System.out.println(
                 "Ruletator 6699" +
-                "========" +
-                "Introduce un número del 0 - 36");
+                        "========" +
+                        "Introduce un número del 0 - 36");
 
         if(scn.hasNextInt()) {
             if (scn.nextInt() <= 36 && scn.nextInt() > 0){

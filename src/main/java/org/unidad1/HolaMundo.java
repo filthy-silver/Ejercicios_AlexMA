@@ -1,4 +1,4 @@
-package org.example;
+package org.unidad1;
 
 /* Este es un programa simple en Java...
    NombreArchivo: "HolaMundo.java". */

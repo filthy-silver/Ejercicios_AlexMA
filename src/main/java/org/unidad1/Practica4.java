@@ -1,4 +1,4 @@
-package org.example;
+package org.unidad1;
 
 public class Practica4 {
 

@@ -1,4 +1,4 @@
-package org.example;
+package org.unidad1;
 
 import java.util.InputMismatchException;
 import java.util.Locale;
@@ -13,12 +13,19 @@ public class Helper {
                 Main.tit();
                 Main.unit1();
                 returnToMain();
-            break;
+                break;
             case 2:
                 Main.tit();
                 Main.unit2();
                 returnToMain();
-            break;
+                break;
+
+            case 3:
+                Main.tit();
+                Main.unit3();
+                returnToMain();
+                break;
+
             default:
                 System.out.println("UNIDAD no encontrada.");
                 returnToMain();

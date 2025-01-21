@@ -1,11 +1,10 @@
-package org.example;
+package org.unidad3;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class UNIDAD3BateriaVectores {
+public class BateriaVectores {
     static Scanner scn = new Scanner(System.in);
     static Random rdn = new Random();
 

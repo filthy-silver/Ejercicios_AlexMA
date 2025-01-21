@@ -1,7 +1,8 @@
-package org.example;
+package org.unidad2;
+
+import org.unidad1.Helper;
 
 import java.util.Scanner;
-import java.util.regex.PatternSyntaxException;
 
 public class UNIDAD2Bateria {
     static Scanner scn = new Scanner(System.in);

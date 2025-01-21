@@ -1,9 +1,12 @@
-package org.example;
-import java.util.InputMismatchException;
+package org.unidad1;
+import org.unidad2.*;
+import org.unidad2.*;
+import org.unidad3.*;
+
 import java.util.Locale;
 import java.util.Scanner;
-import java.io.Console;
-import static org.example.Helper.*;
+
+import static org.unidad1.Helper.*;
 
 public class Main {
     static Scanner scn = new Scanner(System.in).useLocale(Locale.US);
@@ -16,7 +19,9 @@ public class Main {
                  ► UNIDAD 1 → [1]
                    \s
                  ► UNIDAD 2 → [2]
-                \s""");
+                \s
+                 ► UNIDAD 3 → [3]
+                """);
 
         selecUnidad(getTPInt());
 
@@ -62,7 +67,7 @@ public class Main {
                 \t[31] para multimatic99
                 ==========
                 
-                [123] Seleccionar UNIDAD
+                [123] VOLVER
                 """);
         Ejercicio_UD1 ejercicioInicial = new Ejercicio_UD1();
 
@@ -146,7 +151,7 @@ public class Main {
                 
                 ==========
                 
-                [123] Seleccionar UNIDAD
+                [123] VOLVER
                 """);
 
         switch (ejerNum()) {
@@ -177,6 +182,50 @@ public class Main {
                 System.out.println("Ejercicio no encontrado");
                 System.out.flush();
                 returnToMain();
+        }
+    }
+
+    public static void unit3() {
+        System.out.println("""
+                Ejercicios de la UNIDAD 3:
+                Introduce el número del ejercicio que quieres ejecutar:
+                  ► Práctica 1:
+               \t[1] para Actividad 1 //Sin terminar
+                \t[2] para Actividad 2
+                \t[3] para Batería de Vectores
+                \t[4] para Práctica 1
+                \t[5] para Práctica 2
+                \t[6] para Práctica 3
+                \t==========
+                \tEXTRA:
+                \t[7] para Espacio Cartesiano
+               
+                ==========
+
+                [123] VOLVER
+               """);
+        switch (ejerNum()){
+            case 1:
+                Actividad1.main(null);
+                break;
+            case 2:
+                Actividad2.main(null);
+                break;
+            case 3:
+                BateriaVectores.main(null);
+                break;
+            case 4:
+                Practica1.main(null);
+                break;
+            case 5:
+                Practica2.main(null);
+                break;
+            case 6:
+                org.unidad3.Practica3.main(null);
+                break;
+            case 7:
+                EspacioCartesiano.main(null);
+                break;
         }
     }
 }

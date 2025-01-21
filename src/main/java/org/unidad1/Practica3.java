@@ -1,4 +1,4 @@
-package org.example;
+package org.unidad1;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -25,5 +25,9 @@ public class Practica3 {
         } else {
             System.out.println("Lo siento " + name + ", eres menor de edad.\nTe faltan " + (18 - age) + " años para ser mayor de edad.");
         }
+    }
+
+    public static void main(Object o) {
+
     }
 }

@@ -1,10 +1,10 @@
-package org.example;
+package org.unidad3;
 
 import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.PatternSyntaxException;
 
-public class UNIDAD3Practica1 {
+public class Practica1 {
     static Scanner scn = new Scanner(System.in);
     static Random rdn = new Random();
 
@@ -19,22 +19,22 @@ public class UNIDAD3Practica1 {
             values = scn.nextLine();    // Introducimos los valores de los samurais en una variable String
 
             values = fixString(values); // Llamamos a la función fixString para corregir el formato o posibles "typos"
-                                        // de los valores introducidos
+            // de los valores introducidos
 
             if (values.contains(" ")) { // Si la cadena contiene un espacio, la separamos en un array de Strings
 
                 try {   // Intentamos separar la cadena en un array de Strings, debería ser correcto siempre que
-                        // el separador sea un espacio pero puede que el usuario haya metido un carácter
-                        // no contemplado en fixString
+                    // el separador sea un espacio pero puede que el usuario haya metido un carácter
+                    // no contemplado en fixString
                     team = values.split(" ");
 
                 } catch (PatternSyntaxException e) {
-                        System.out.println("Error: separador incorrecto [0e]" +
-                                "\nIntroduce los valores separados por un espacio");
+                    System.out.println("Error: separador incorrecto [0e]" +
+                            "\nIntroduce los valores separados por un espacio");
 
                 }
                 check = correctValues(team);    //Pasamos el array de Strings a la función correctValues para
-                                                // comprobar que los valores son correctos. Si lo son, devolverán true
+                // comprobar que los valores son correctos. Si lo son, devolverán true
 
             } else {
                 System.out.println("Error: separador incorrecto [1e]" +
@@ -44,8 +44,8 @@ public class UNIDAD3Practica1 {
         } while (!check);
 
         int[] team1 = getValues(team);  //Como ya sabemos y hemos comprobado que los valores son correctos,
-                                        //pasamos el array de Strings a la función getValues
-                                        //para convertirlo en un array de enteros
+        //pasamos el array de Strings a la función getValues
+        //para convertirlo en un array de enteros
 
         System.out.println("> Equipo compleatado.\n> Equipo 2");
 
@@ -80,13 +80,13 @@ public class UNIDAD3Practica1 {
         System.out.println("> Equipo completado");
 
         int beginWith = rdn.nextInt(7);  //Elegimos un número aleatorio entre 0 y 6 para determinar con qué
-                                                //samurai empieza la batalla
+        //samurai empieza la batalla
 
         System.out.println("> ¡Empieza la batalla!\n> La batalla empieza con el Samurai " + (beginWith + 1));
         int t1score=0, t2score=0;   //Almacenamos el número de bajas de cada equipo como puntos
 
         int e;  //Inicializamos una variable para almacenar el índice del samurai que se enfrenta en cada ronda fuera del
-                //bucle para que no se reinicie en cada iteración
+        //bucle para que no se reinicie en cada iteración
         for (int i = 0; i < team1.length; i++) {
 
             if (i + beginWith < 7) {    //Siempre que el índice no supere 6, se mantiene el valor
@@ -143,12 +143,12 @@ public class UNIDAD3Practica1 {
         }
 
         while (values.contains("  ")) {     //Si contiene dos espacios seguidos, los reemplazamos por un único espacio
-                                            //evitando errores al separar por espacios
+            //evitando errores al separar por espacios
             values = values.replace("  ", " ");
         }
 
         while (values.charAt(0) == ' ') {   //Aseguramos que no haya espacios al principio de la cadena que formen un
-                                            // valor vacío en el array
+            // valor vacío en el array
             values = values.substring(1);
         }
 
