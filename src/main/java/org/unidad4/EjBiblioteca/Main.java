@@ -1,9 +1,7 @@
-package org.unidad4;
+package org.unidad4.EjBiblioteca;
 
 import java.security.SecureRandom;
-import java.text.DecimalFormat;
 import java.time.Instant;
-import java.util.Random;
 
 public class Main {
     static SecureRandom random = new SecureRandom();
@@ -18,7 +16,7 @@ public class Main {
         Libro libro2 = new Libro("El Quijote", "Cervantes");
         Libro libro3 = new Libro("La Celestina", "Fernando de Rojas");
         Libro libro4 = new Libro("El Libro Troll", "Rubius");
-        
+
         System.out.println(libro1.getID());
         System.out.println(libro2.getID());
         System.out.println(libro3.getID());
