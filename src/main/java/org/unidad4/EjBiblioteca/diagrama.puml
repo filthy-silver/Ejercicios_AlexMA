@@ -1,0 +1,92 @@
+﻿@startuml
+' Define the classes with their attributes and methods
+
+class Editorial {
+    - String nombre
+    - String pais
+    - ArrayList<Libro> listaLibros
+
+    + Editorial(String, String)
+    + añadirLibro(Libro): void
+    + getNombre(): String
+    + setNombre(String): void
+    + getPais(): String
+    + setPais(String): void
+    + toString(): String
+}
+
+class Libro {
+    - String titulo
+    - String autor
+    - String ID
+    - boolean disponible
+    - static int cantidadLibros
+    - static int librosDisponibles
+    - Estudiante estudiantePrestado
+
+    + Libro(String, String)
+    + prestar(Estudiante): Prestamo
+    + devolver(Estudiante): void
+    + setTitulo(String): void
+    + getTitulo(): String
+    + setAutor(String): void
+    + getAutor(): String
+    + getID(): String
+    + getDisponible(): boolean
+    + getEstudiantePrestado(): Estudiante
+    + setEstudiantePrestado(Estudiante): void
+    + getTotalLibros(): int
+    + getLibrosDisponibles(): int
+    + toString(): String
+}
+
+class Estudiante {
+    - String nombre
+    - String curso
+    - int nia
+    - String email
+    - ArrayList<Libro> libroPrestado
+    - static int contadorEstudiantes
+
+    + Estudiante(String)
+    + Estudiante(String, String, String)
+    + addLibro(Libro): void
+    + removeLibro(Libro): void
+    + getNombre(): String
+    + setNombre(String): void
+    + getCurso(): String
+    + setCurso(String): void
+    + getNia(): int
+    + setEmail(String): void
+    + getLibroPrestado(): ArrayList<Libro>
+    + setLibroPrestado(ArrayList<Libro>): void
+    + obtenerTotalEstudiantes(): int
+    + validarCorreo(String): boolean
+    + validarCorreo(): boolean
+    + toString(): String
+}
+
+class Prestamo {
+    - Estudiante estudiante
+    - Libro libro
+    - LocalDate fechaPrestamo
+
+    + Prestamo(Estudiante, Libro)
+    + getEstudiante(): Estudiante
+    + setEstudiante(Estudiante): void
+    + getLibro(): Libro
+    + setLibro(Libro): void
+    + getFechaPrestamo(): LocalDate
+    + setFechaPrestamo(LocalDate): void
+    + toString(): String
+}
+
+' Define relationships between classes
+
+Editorial "1" -- "0..*" Libro : contiene
+Libro "1" -- "0..1" Estudiante : prestadoA
+Estudiante "1" -- "0..*" Libro : tienePrestados
+Prestamo "1" -- "1" Estudiante : realizadoPor
+Prestamo "1" -- "1" Libro : libroPrestado
+
+@enduml
