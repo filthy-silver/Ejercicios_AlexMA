@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class AppProgramas {
 
-    private static ArrayList<Cadena> listaCadenas = new ArrayList<Cadena>();
+    static ArrayList<Cadena> listaCadenas = new ArrayList<Cadena>();
 
     public static void main(String[] args) {
 
