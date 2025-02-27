@@ -1,9 +1,9 @@
 package org.unidad6.herenciasFestival;
 
 public class Concierto {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EdadMinimaException {
 
-        Asistente a1 = new Asistente("Carlos", 25, "VIP");
+        Asistente a1 = new Asistente("Carlos", 15, "VIP");
         Artista art1 = new Artista("Dua Lipa", 28, "Pop");
         Organizador org1 = new Organizador("Juan", 30, "Director");
 
