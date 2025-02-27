@@ -1,4 +1,4 @@
-﻿package org.unidad6.practica2;
+package org.unidad6.practica2;
 
 public class Masajista  extends MutxamelIFC
 {
@@ -21,16 +21,16 @@ public class Masajista  extends MutxamelIFC
 
     @Override
     public void concentrarse() {
-
+        System.out.println("El masajista " + nombre + " se está concentrando");
     }
 
     @Override
     public void viajar(String ciudad) {
-
+        System.out.println("El masajista " + nombre + " está viajando a " + ciudad);
     }
 
     @Override
     public void celebrarGol() {
-
+        System.out.println("GOLASSSOOOOO!!");
     }
 }

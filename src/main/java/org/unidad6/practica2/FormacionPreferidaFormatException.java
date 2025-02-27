@@ -1,4 +1,4 @@
-﻿package org.unidad6.practica2;
+package org.unidad6.practica2;
 
 public class FormacionPreferidaFormatException extends RuntimeException {
     public FormacionPreferidaFormatException(String message) {
