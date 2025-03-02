@@ -1,5 +1,7 @@
 package org.unidad6.practica2;
 
+import static org.unidad6.practica2.AppMutxamelFC.checkDorsal;
+
 public class Jugador extends MutxamelIFC implements FuncionesIntegrantes, AccionesDeportivas {
     private Equipos categoria;
     private int dorsal;
@@ -45,7 +47,7 @@ public class Jugador extends MutxamelIFC implements FuncionesIntegrantes, Accion
         }
     }
 
-    private int setEdad(int edad) {
+    int setEdad(int edad) {
         if (edad < 8) {
             System.out.println("El jugador " + nombre + " no puede jugar, es muy pequeño");
             return 0;
@@ -55,7 +57,7 @@ public class Jugador extends MutxamelIFC implements FuncionesIntegrantes, Accion
     }
 
     public void calentar() {
-        System.out.println("El jugador" + nombre + " con el dorsal " +  dorsal + "se está concentrando");}
+        System.out.println("El jugador" + nombre + " con el dorsal " +  dorsal + " está calentando");}
 
     public void descansar() {
         System.out.println(nombre + " está descansando");
@@ -101,7 +103,32 @@ public class Jugador extends MutxamelIFC implements FuncionesIntegrantes, Accion
         System.out.println("El jugador " + nombre + " está jugando un partido contra " + rival);
     }
 
+    @Override
+    public String toString() {
+        return nombre + "\t→ EDAD: " + edad +  "\t|\tCATEGORIA: " + categoria + "\t|\tPOSICION: " + posicion + "\t|\tDORSAL: " + dorsal;
+    }
+
     public String getDorsal() {
         return String.valueOf(dorsal);
+    }
+
+    public void setNombre(String name) {
+        this.nombre = name;
+    }
+
+    public void setPosicion(String posicion) {
+        this.posicion = setDemarcacion(posicion);
+    }
+
+    public void setDorsal(int nuevoDorsal) {
+        // Creamos un jugador temporal porque no sé cómo hacerlo de otra forma con el tiempo que me queda
+        Jugador tempPlayer = new Jugador(this.nombre, this.edad, nuevoDorsal, this.posicion.toString());
+
+        if (checkDorsal(tempPlayer)) {
+            this.dorsal = nuevoDorsal;
+        } else {
+            throw new SameDorsalException(this);
+
+        }
     }
 }

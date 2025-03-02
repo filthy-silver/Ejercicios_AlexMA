@@ -36,6 +36,14 @@ public class Entrenador extends MutxamelIFC implements AccionesDeportivas{
         System.out.println("Está jugando un partido contra " + rival);
     }
 
+    public void planificarEntrenamiento(){
+        System.out.println("El entrenador " + nombre + " está planificando el entrenamiento");
+    }
+
+    public void hacerCambios(){
+        System.out.println("El entrenador " + nombre + " está haciendo cambios");
+    }
+
     @Override
     public void concentrarse() {
         System.out.println("El entrenador " + nombre + " se está concentrando");
@@ -49,6 +57,10 @@ public class Entrenador extends MutxamelIFC implements AccionesDeportivas{
     @Override
     public void celebrarGol() {
         System.out.println("GOLASSSOOOOO!!");
+    }
 
+    @Override
+    public String toString() {
+        return nombre;
     }
 }

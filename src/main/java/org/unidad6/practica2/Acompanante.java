@@ -14,7 +14,7 @@ public class Acompanante extends MutxamelIFC{
     }
 
     public void animarEquipo() {
-        System.out.println("Animar");
+        System.out.println(nombre + " está animando a " + integrante.getNombre());
     }
 
     @Override
@@ -24,7 +24,7 @@ public class Acompanante extends MutxamelIFC{
 
     @Override
     public void viajar(String ciudad) {
-        System.out.println("El acompañante de "+ integrante + ", " + nombre + " está viajando a " + ciudad);
+        System.out.println("El acompañante de "+ integrante.getNombre() + ", " + nombre + " está viajando a " + ciudad);
     }
 
     @Override

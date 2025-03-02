@@ -16,7 +16,7 @@ public class Masajista  extends MutxamelIFC
     }
 
     public void darMasaje(Jugador jugador){
-        System.out.println("El masajista" + nombre + "le está dando un masaje a" + jugador.getNombre());
+        System.out.println("El masajista " + nombre + " le está dando un masaje a " + jugador.getNombre());
     }
 
     @Override
@@ -32,5 +32,10 @@ public class Masajista  extends MutxamelIFC
     @Override
     public void celebrarGol() {
         System.out.println("GOLASSSOOOOO!!");
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 }
