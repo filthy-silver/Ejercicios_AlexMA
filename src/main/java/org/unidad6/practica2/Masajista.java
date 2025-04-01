@@ -1,6 +1,6 @@
 package org.unidad6.practica2;
 
-public class Masajista  extends MutxamelIFC
+public class Masajista extends MutxamelIFC
 {
     private String titulacion;
     private int anosExperiencia;
