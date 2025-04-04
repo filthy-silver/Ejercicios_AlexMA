@@ -10,7 +10,7 @@ public class AppZonaClientes {
         Mercadam mercadam = new Mercadam();
         List<Cliente> clientes = mercadam.getClientes();
 
-        autenticaion(clientes);
+        autenticacion(clientes);
         System.out.println("BIENVENID@ " + cliente.getUsuario() + "!"
         + "\nAñade productos a tu carrito de la compra...\n");
 
@@ -120,16 +120,11 @@ public class AppZonaClientes {
         System.out.println("\n" +"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
                                  "RESUMEN DEL CARRITO DE TU COMPRA:\n\n" +
                                  "Producto\t\tCantidad\tPrecio\n");
-        /*
-        %-[num]s: Reserva [num] caracteres para el nombre del producto, alineado a la izquierda
-        %[num]d: Reserva [num] caracteres para la cantidad, alineado a la derecha
-        %[num].[floatNum]f€: Reserva [num] caracteres para el precio con [floatNum] decimales, alineado a la derecha
-        %n: Inserta un salto de línea
-         */
+     
 
         for (Producto p : cliente.getPedido().getPedido().keySet()){
             int cantidad = cliente.getPedido().getPedido().get(p);
-            double precioTotal = p.getPrecio() * cantidad;
+            float precioTotal = p.getPrecio() * cantidad;
             System.out.printf("%-15s\t%5d\t  %7.2f€%n",
                     p.name(),
                     cantidad,
@@ -139,7 +134,7 @@ public class AppZonaClientes {
         System.out.println("TOTAL A PAGAR " + cliente.getPedido().getImporteTotal() + "€\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     }
 
-    public static void autenticaion(List<Cliente> clientes){
+    public static void autenticacion(List<Cliente> clientes){
         int intento = 0;
         do {
             System.out.println("Introduce tu usuario");
