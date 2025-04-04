@@ -6,15 +6,9 @@ Vamos a crear una aplicación para gestionar un carrito de la compra. Consistir�
 
 ### Índice
 
+Comentario
+
 [Diagrama](#Diagrama)
-
-Enlaces
-
-A
-
-Partes
-
-Del Proyecto
 
 ---
 
@@ -22,7 +16,7 @@ Del Proyecto
 
 Aún que el desarrollo del programa fue desarrollando todas las clases al mismo tiempo, vamos a realizar el comentario del proyecto según dependencias.
 
-### AppZonaClientes
+### AppZonaClientes.java
 
 Siendo la *app* principal, es la clase que madre del programa. Desde aquí se instancia el ochenta por ciento del programa.
 
@@ -324,6 +318,245 @@ return entrada2.getValue().compareTo(entrada1.getValue());
 ```
 
 Extraeremos el valor comparado de ambas entradas, lo cuál hará en orden descendente, permitiendo almacenar en orden descendente los valores de los productos en la *lista* de *HashMaps* `entradas`, para a continuación ser recorrido.
+
+### Mercadam.java
+
+Con la inicialización de Mercadam vamos a genrear los clientes que podrán ser usados para probar el programa.
+
+```java
+public Mercadam() {
+        this.clientes = new java.util.ArrayList<>();
+        generarClientes();
+    }
+```
+
+#### generarClientes()
+
+Para generar los clientes, usaremos dos vectores con nombres y adjetivos y una cadena de String con los caracteres disponibles para las contraseñas.
+
+```java
+public void generarClientes(){
+        for (int i = 0; i < 5; i++){
+            String cliente = "";
+            StringBuilder contrasena = new StringBuilder();
+            do {
+                cliente = nicks[(int) (Math.random() * nicks.length)] + adjetivos[(int) (Math.random() * adjetivos.length)];
+
+            } while (cliente.length() > 12);
+
+            for (int j = 0; j < 8; j++){
+                String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                contrasena.append(String.valueOf(caracteres.charAt((int) (Math.random() * caracteres.length()))));
+            }
+            clientes.add(new Cliente(cliente, contrasena.toString(), "Calle Falsa 123"));
+        }
+
+        System.out.println("Clientes generados: " +
+                clientes.toString().replace("[", "").replace("]", "").replace(",","'") + "'\n");
+
+    }
+```
+
+#### getClientes()
+
+Con este método devolveremos una colección inmodificable del clientes quien nos la pida.
+
+```java
+    public List<Cliente> getClientes(){
+        return Collections.unmodifiableList(clientes);
+    }
+```
+
+### Cliente
+
+Para los clientes, vamos a inicializarlos con diferentes parámetros los cuales serán pasados por el constructor, menos la dirección y las promociones, que serán puestas por defecto en `false`. A la vez que se cree el cliente, el pedido será iniciado también.
+
+```java
+public class Cliente {
+    private String usuario;
+    private String contrasena;
+    private String direccion;
+    private Pedido pedido;
+    private boolean promociones;
+
+    public Cliente(String usuario, String contrasena, String direccion) {
+        this.usuario = usuario;
+        this.contrasena = contrasena;
+        this.direccion = direccion;
+        this.promociones = false;
+
+        crearPedido();
+    }
+```
+
+#### crearPedido()
+
+Inicializa el pedido. Lo destaco porque no sé por qué lo puse por separado en un principio, pero a estas horas y alturas no lo voy a tocar por si rompo algo.
+
+```java
+public void crearPedido() {
+    this.pedido = new Pedido();
+}
+```
+
+El resto son *getters* y *setters* sin ningún tipo de relevancia para el entendimiento del código.
+
+### Pedido.java
+
+Almacena un *HashMap* con el pedido, almacena el importe total de este, y como no se podía acceder desde aquí al estado de los descuentos, almacenamos si han sido aplicados o no en el `Pedido` actual.
+
+```java
+public class Pedido {
+    private HashMap<Producto, Integer> pedido;
+    private float importeTotal;
+    private boolean descuentosAplicados = false;
+
+    public Pedido() {
+        this.pedido = new HashMap<Producto, Integer>();
+        this.importeTotal = 0;
+    }
+```
+
+#### aplicarPromo3x2
+
+Para aplicar la promoción, vamos a calcular cuantas veces llegamos a tres unidades, dividiendo entre tres, y luego multiplicaremos el precio del producto por la cantidad de unidades a descontar. Con ese conocimiento se lo podemos descontar al precio total.
+
+Gracias a marcar la booleana como verdadera, cuando calculemos el importe total en algún recarga del ticket de precios, podremos calcular el descuento de forma silenciosa.
+
+```java
+public void aplicarPromo3x2(){
+    for (Producto producto : pedido.keySet()) {
+        if (pedido.get(producto) >= 3) {
+            int cantidad = pedido.get(producto);
+            int descuento = cantidad / 3; // Calcular cuantas veces se divide entre 3
+
+            importeTotal -=  (producto.getPrecio()) * descuento;
+
+            System.out.println("Aplicando promo 3x2 a " + producto.name() + ": " +
+                    "pagas " + descuento * producto.getPrecio() + "€ menos\n");
+            descuentosAplicados = true;
+        }
+    }
+}
+
+public void aplicarPromo3x2(int a){
+    for (Producto producto : pedido.keySet()) {
+        if (pedido.get(producto) >= 3) {
+            int cantidad = pedido.get(producto);
+            int descuento = cantidad / 3;
+
+            importeTotal -=  (producto.getPrecio()) * descuento;
+        }
+    }
+}
+```
+
+#### aplicarPromo10()
+
+```java
+public void aplicarPromo10(){
+    float aux = importeTotal;
+    importeTotal = Math.round(importeTotal * 90) / 100.0f;
+    System.out.println("Aplicando promo 10%: " + aux + "€ -> " + importeTotal + "€\n");
+    descuentosAplicados = true;
+}
+
+public void aplicarPromo10(int a){
+    float aux = importeTotal;
+    importeTotal = Math.round(importeTotal * 90) / 100.0f;
+}
+```
+
+Comento esta clase, para puntualizar sobre esta linea:
+
+```java
+    importeTotal = Math.round(importeTotal * 90) / 100.0f;
+```
+
+Si no se hacía un redondeo, multiplicando por noventa, y dividiendo por 100 (para mantener dos decimales), un fallo de cálculos interno provocaba aparecer `0,00001€` al realizar los calculos, tanto en *floats* como *doubles*. 
+
+#### addProducto
+
+```java
+public void addProducto(Producto producto){
+    if (pedido.containsKey(producto)) {
+        pedido.put(producto, pedido.get(producto) + 1 );
+    } else {
+        this.pedido.put(producto, 1);
+    }
+    calcularImporteTotal();
+}
+```
+
+Para evitar fallos, si un pedido no contiene un producto, le añadimos el producto, y le asignamos una unidad. Si ya estuviera el producto, simplemente le sumaremos uno al producto de la cesta.
+
+#### calcularImporteTotal()
+
+```java
+private void calcularImporteTotal(){
+    float total = 0;
+    for (Producto p : pedido.keySet()){
+        total += p.getPrecio() * pedido.get(p);
+    }
+    this.importeTotal = Math.round(total * 100) / 100.0f;
+
+    if (descuentosAplicados) {
+        aplicarPromo3x2(0);
+        aplicarPromo10(0);
+    }
+}
+```
+
+Empleando la técnica ya citada con el redondeo, simplemente cogemos el valor de cada producto y lo multiplicamos por el precio del producto.
+Si ya hubiéramos aplicado los descuentos, utilizaríamos los métodos sobrecargados que actualizan el valor del total sin mostrar nada por consola.
+
+#### removeProducto(producto)
+
+```java
+public void removeProducto(Producto producto) {
+    if (pedido.containsKey(producto)) {
+        if (pedido.get(producto) > 1) {
+            pedido.put(producto, pedido.get(producto) - 1);
+        } else {
+            pedido.remove(producto);
+        }
+    } else {
+        System.out.println("El producto no está en el carrito");
+    }
+    calcularImporteTotal();
+}
+```
+
+Vamos a comparar las claves del producto ,su nombre, si este se encuentra en el pedido y su valor es mayor que `1` simplemente le restaremos una unidad. En el caso contrario, lo borraríamos.
+
+Después, calcularíamos el importe total.
+
+### Producto.java
+
+```java
+public enum Producto {
+    MANZANAS(2.3f),
+    PAN(2.5f),
+    ARROZ(3.5f),
+    POLLO(4.3f),
+    LECHE(1.3f),
+    ACEITE(8.3f),
+    HUEVOS(3.3f),
+    TOMATE(4f),
+    PASTA(0.89f);
+
+    private final float precio;
+    Producto(float precio) {
+        this.precio = precio;
+    }
+
+    public float getPrecio() {
+        return precio;
+    }
+}
+```
+
+Un *Enum* más básico que un botijo.
 
 ## Diagrama
 
