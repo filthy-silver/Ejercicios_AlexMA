@@ -20,10 +20,22 @@ public class Bus {
                                                                 \s
                 
                 """);
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         while (pos1 < size && pos2 < size) {
-            pos1 += (int) (Math.random() + (5 * Math.random()/3));
-            pos2 += (int) (Math.random() + (5 * Math.random()/3));
+            if (pos1 > pos2 + 3){
+                pos2 += 1 + (int)(4 * Math.pow(Math.random(), 2));
+            } else if (pos2 > pos1 + 3) {
+                pos1 += 1 + (int)(4 * Math.pow(Math.random(), 2));
+            }
+
+            if ((int) (Math.random() * 10) == 0) {
+                pos1 += (int) (Math.random() + (8 * Math.random()/3));
+            } else if ((int) (Math.random() * 10) == 1) {
+                pos2 += (int) (Math.random() + (8 * Math.random()/3));
+            }
+
+            pos1 += 1 + (int)(4 * Math.pow(Math.random(), 2));
+            pos2 += 1 + (int)(4 * Math.pow(Math.random(), 2));
 
             if (pos1 > size) {
                 pos1 = size;
