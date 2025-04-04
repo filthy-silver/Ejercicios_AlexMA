@@ -222,7 +222,7 @@ Para imprimir los productos les daremos un formato para mostrar su nombre y prec
 String linea = String.format("║ \t► %-15s precio (%-5.2f€)", p.name(), p.getPrecio());
 ```
 
-Es un método estático de String que nos permite usar características especiales similares a otros lenguajes.
+Es un método estático de String que nos permite usar características especiales similares a leguajes C.
 
 - `%-15s` nos permitirá reservarle 15 caracteres a la izquierda, lo cual definiremos con el carácter `-`, a un String `s`.
 - `%-5.2f` nos permitirá reservarle 5 caracteres también a la izquierda a un numero flotante `f` y formatearlo a dos decimales.
@@ -242,7 +242,7 @@ public static void iniciarCompra(){
 #### resumenCompra()
 
 Mostrará en formato de ticket el estado actual del pedido, incluyendo el nombre del producto, la cantidad y el precio total.
-Para el formato, esta vez emplearemos *print format* `printf`, cual cuyo nombre indica permite darle formato al texto.
+Para el formato, esta vez emplearemos *print formatted* `printf`, cual cuyo nombre indica permite darle formato al texto.
 
 ```java
 private static void resumenCompra() {
@@ -269,6 +269,61 @@ private static void resumenCompra() {
 - `%[num]d`: Reserva `[num]` caracteres para la cantidad  `d`, alineado a la derecha
 - `%[num].[floatNum]f€`: Reserva `[num]` caracteres para el precio con `[floatNum]` decimales, alineado a la derecha
 - `%n`: Inserta un salto de línea
+
+#### queHacer()
+
+Es una clase casi residual, empleada únicamente para imprimir un menú para dar la indicación de *que hacer* a continuación, la cual da pie al *switch* del *main*
+
+#### imprimirListaCantidad()
+
+```java
+public static void imprimirListaCantidad() {
+    System.out.println("\nPRODUCTOS ORDENADOS POR CANTIDAD:");
+    System.out.println("Producto\t\tCantidad\tPrecio");
+
+    List<Map.Entry<Producto, Integer>> entradas = new ArrayList<>(cliente.getPedido().getPedido().entrySet());
+
+    entradas.sort(new Comparator<Map.Entry<Producto, Integer>>() {
+        public int compare(Map.Entry<Producto, Integer> entrada1, Map.Entry<Producto, Integer> entrada2) {
+            return entrada2.getValue().compareTo(entrada1.getValue());
+        }
+    });
+
+    for (Map.Entry<Producto, Integer> entrada : entradas) {
+        Producto producto = entrada.getKey();
+        Integer cantidad = entrada.getValue();
+        System.out.printf("%-15s\t%5d\t  %7.2f€%n",
+                producto.name(),
+                cantidad,
+                producto.getPrecio() * cantidad);
+    }
+
+    System.out.println("\nTOTAL A PAGAR: " + cliente.getPedido().getImporteTotal() + "€");
+    }
+}
+```
+
+Una clase copiada y modificada en el que la novedad es llamar al *Comparator* para hacer una ordenación de una "lista de mapas" .
+
+```java
+List<Map.Entry<Producto, Integer>> entradas = new ArrayList<>(cliente.getPedido().getPedido().entrySet());
+```
+
+En el `compare` vamos a introducir dos parámetros `Map.Entry<Producto, Integer>`: `entrada1` y `entrada2`. Esto hará que al comparar los mapas extraiga el *valor* de cada uno de ellos y los compare.
+
+```java
+entradas.sort(new Comparator<Map.Entry<Producto, Integer>>() {
+        public int compare(Map.Entry<Producto, Integer> entrada1, Map.Entry<Producto, Integer> entrada2) {
+            return entrada2.getValue().compareTo(entrada1.getValue());
+        }
+    });
+```
+
+```java
+return entrada2.getValue().compareTo(entrada1.getValue());
+```
+
+Extraeremos el valor comparado de ambas entradas, lo cuál hará en orden descendente, permitiendo almacenar en orden descendente los valores de los productos en la *lista* de *HashMaps* `entradas`, para a continuación ser recorrido.
 
 ## Diagrama
 

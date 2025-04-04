@@ -120,7 +120,7 @@ public class AppZonaClientes {
         System.out.println("\n" +"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
                                  "RESUMEN DEL CARRITO DE TU COMPRA:\n\n" +
                                  "Producto\t\tCantidad\tPrecio\n");
-     
+
 
         for (Producto p : cliente.getPedido().getPedido().keySet()){
             int cantidad = cliente.getPedido().getPedido().get(p);
