@@ -6,7 +6,7 @@ Vamos a crear una aplicación para gestionar un carrito de la compra. Consistir�
 
 ##### Índice
 
-Diferentes
+[Diagrama](#Diagrama)
 
 Enlaces
 
@@ -22,82 +22,7 @@ Del Proyecto
 
 ```mermaid
 classDiagram
-    class AppZonaClientes {
-        -static Cliente cliente
-        -static Scanner sc
-        +main(args: String[])
-        +autenticaion(clientes: List~Cliente~)
-        +iniciarCompra()
-        +imprimirProductos()
-        +imprimirDespedida()
-        +imprimirListaCantidad()
-        -eliminarProducto()
-        -queHacer()
-        -resumenCompra()
-    }
-    
-    class Cliente {
-        -String usuario
-        -String contrasena
-        -String direccion
-        -Pedido pedido
-        -boolean promociones
-        +Cliente(usuario: String, contrasena: String, direccion: String)
-        +crearPedido()
-        +getUsuario() String
-        +getContrasena() String
-        +getPedido() Pedido
-        +getDireccion() String
-        +setPromociones(b: boolean)
-        +getPromociones() boolean
-    }
-    
-    class Mercadam {
-        -List~Cliente~ clientes
-        -String[] nicks
-        -String[] adjetivos
-        +Mercadam()
-        +generarClientes()
-        +getClientes() List~Cliente~
-    }
-    
-    class Pedido {
-        -HashMap~Producto, Integer~ pedido
-        -float importeTotal
-        -boolean descuentosAplicados
-        +Pedido()
-        +aplicarPromo3x2()
-        +aplicarPromo3x2(a: int)
-        +aplicarPromo10()
-        +aplicarPromo10(a: int)
-        +addProducto(producto: Producto)
-        -calcularImporteTotal()
-        +getPedido() HashMap~Producto, Integer~
-        +getImporteTotal() float
-        +removeProducto(producto: Producto)
-    }
-    
-    class Producto {
-        <<enumeration>>
-        MANZANAS
-        PAN
-        ARROZ
-        POLLO
-        LECHE
-        ACEITE
-        HUEVOS
-        TOMATE
-        PASTA
-        -float precio
-        +getPrecio() float
-    }
-    
-    AppZonaClientes --> "1" Cliente: usa
-    AppZonaClientes --> "1" Mercadam: usa
-    Cliente --> "1" Pedido: tiene
-    Pedido --> "*" Producto: contiene
-    Mercadam --> "*" Cliente: contieneclassDiagram
-direction BT
+direction LR
 class AppZonaClientes {
   + AppZonaClientes() 
   - resumenCompra() void
@@ -153,6 +78,14 @@ class Producto {
   + valueOf(String) Producto
    float precio
 }
+
+AppZonaClientes "1" *--> "cliente 1" Cliente 
+AppZonaClientes  ..>  Mercadam : «create»
+Cliente  ..>  Pedido : «create»
+Cliente "1" *--> "pedido 1" Pedido 
+Mercadam "1" *--> "clientes *" Cliente 
+Mercadam  ..>  Cliente : «create»
+Pedido "1" *--> "pedido *" Producto 
 
 
 ```
